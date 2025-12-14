@@ -13,7 +13,7 @@ void clear(){
 }
 
 int totalMinutes(const StudyRecord& r){
-    int sum;
+    int sum=0;
     for(int i=0; i<5; i++){
         sum += r.minutes[i];
     }
@@ -25,7 +25,7 @@ double averageMinutes(const StudyRecord& r){
 }
 
 int totalAll(StudyRecord arr[], int size){
-    int sum;
+    int sum=0;
     for(int i=0;i<3;i++){
         for(int j=0; j<5; j++){
             sum += arr[i].minutes[j];
@@ -73,5 +73,6 @@ int main(){
         cout << "Total: " << totalMinutes(records[i]) << ", Avg: " << averageMinutes(records[i]) << endl;
     }
     cout << "The subject with the most minutes is " << records[indexOfMax(records,3)].SubjectName << "." << endl;
+    cout << "The total time studied is " << totalAll(records,3) << " minutes." << endl;
     return(0);
 }
