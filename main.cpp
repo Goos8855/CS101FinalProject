@@ -35,15 +35,15 @@ int totalAll(StudyRecord arr[], int size){
 }
 
 int indexOfMax(StudyRecord arr[], int size){
-    int max[2];
+    int indexOfMax = 0;
+    int max = 0;
     for(int i=0; i<3; i++){
-        for(int j=0; j<5; j++){
-            if(arr[i].minutes[j] <= max){
-                
-            }
+        if(totalMinutes(arr[i])>max){
+            max = totalMinutes(arr[i]);
+            indexOfMax = i;
         }
     }
-    return()
+    return(indexOfMax);
 }
     
 int main(){
@@ -63,5 +63,15 @@ int main(){
         clear();
     }
     
+    //output
+
+    for(int i=0; i<3; i++){
+        cout << records[i].SubjectName << ": ";
+        for(int j=0; j<5; j++){
+            cout << records[i].minutes[j] << ", ";
+        }
+        cout << "Total: " << totalMinutes(records[i]) << ", Avg: " << averageMinutes(records[i]) << endl;
+    }
+    cout << "The subject with the most minutes is " << records[indexOfMax(records,3)].SubjectName << "." << endl;
     return(0);
 }
