@@ -60,4 +60,29 @@ int main(){
 
     }
 
+    int maxx = 0;
+    int maxy = 0;
+    for(int i=0; i<points.size(); i++){ //Loop through the list and check for max x and y for the entire list
+        if(points[i].x > maxx){
+            maxx = points[i].x;
+        }
+        if(points[i].y > maxy){
+            maxy = points[i].y;
+        }
+
+    }
+
+    char print[maxx][maxy];
+
+    for(int i=0; i<points.size(); i++){ //Moving all the values from the struct into a 2d array
+        print[points[i].x][points[i].y] = points[i].txt;
+    }
+
+    for(int y=0; y<maxy; y++){
+        for(int x=0; x<maxx; x++){
+            cout << print[x][y];
+        }
+        cout << endl;
+    }
+
 }
