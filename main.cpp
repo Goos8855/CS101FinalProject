@@ -18,10 +18,46 @@ int main(){
         return 1;
     }
 
-    vector<point> points;
+    vector<point> points; //Initializing all our variables and lists
     int x;
     int y;
     char txt;
+    string line;
+    int i = 0;
+    point temp;
 
-    
+    getline(file, line); //Skip first 3 lines since it's just the instructions
+    getline(file, line);
+    getline(file, line);
+
+    while(true){
+        point p;
+        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
+            break;
+        }
+        if(line == ""){
+            continue;
+        }
+        p.x = stoi(line); //stoi is the getline equivalent which converts the str in the txt file to int for our program
+
+        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
+            break;
+        }
+        if(line == ""){
+            continue;
+        }
+        p.txt = line[0]; //No need to use stoi since we just need the character anyways
+
+        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
+            break;
+        }
+        if(line == ""){
+            continue;
+        }
+        p.y = stoi(line); 
+
+        points.push_back(p); //Adds the values to the vector
+
+    }
+
 }
