@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ struct point{ //Organize our points into a vector list of points
 };
 
 int main(){
+    cout << "Started" << endl;
     ifstream file("data.txt");
     if(!file){ //Check if the file actually opens first
         cout << "File couldn't open" << endl;
@@ -25,40 +27,25 @@ int main(){
     string line;
     int i = 0;
     point temp;
+    cout << "Init" << endl;
 
-    getline(file, line); //Skip first 3 lines since it's just the instructions
-    getline(file, line);
-    getline(file, line);
+    while(getline(file, line)){
+        if(line.empty()) continue;
+        stringstream ss(line);
+        point p{};
+        string mid;
 
-    while(true){
-        point p;
-        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
-            break;
-        }
-        if(line == ""){
-            continue;
-        }
-        p.x = stoi(line); //stoi is the getline equivalent which converts the str in the txt file to int for our program
+        ss>>p.x;
+        ss>>mid;
+        ss>>p.y;
 
-        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
-            break;
-        }
-        if(line == ""){
-            continue;
-        }
-        p.txt = line[0]; //No need to use stoi since we just need the character anyways
+        p.txt = mid.empty() ? ' ' : mid[0];
+        
+        points.push_back(p);
+    }    
 
-        if(!getline(file,line)){ //Filter out end of file and empty lines before reading x
-            break;
-        }
-        if(line == ""){
-            continue;
-        }
-        p.y = stoi(line); 
-
-        points.push_back(p); //Adds the values to the vector
-
-    }
+    cout << "Fetched" << endl;
+    cout << points.size() << endl;
 
     int maxx = 0;
     int maxy = 0;
@@ -72,17 +59,23 @@ int main(){
 
     }
 
-    char print[maxx][maxy];
+    
+    cout << "Max-x: " << maxx << ", Max-y: " << maxy << endl;
+
+    vector<vector<char>> print(maxy+1, vector<char>(maxx+1, ' '));
 
     for(int i=0; i<points.size(); i++){ //Moving all the values from the struct into a 2d array
-        print[points[i].x][points[i].y] = points[i].txt;
+        print[points[i].y][points[i].x] = points[i].txt;
     }
 
-    for(int y=0; y<maxy; y++){
-        for(int x=0; x<maxx; x++){
-            cout << print[x][y];
+    for(int y=0; y<=maxy; y++){
+        for(int x=0; x<=maxx; x++){
+            cout << print[y][x];
         }
         cout << endl;
+        
     }
+
+    cout << "Printed" << endl;
     return 0;
 }
