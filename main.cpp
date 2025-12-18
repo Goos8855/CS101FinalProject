@@ -35,13 +35,13 @@ int main(){
         point p{};
         string mid;
 
-        ss>>p.x;
+        ss>>p.x; //Reading all of the numbers like you would reading cin from the terminal
         ss>>mid;
         ss>>p.y;
 
-        p.txt = mid.empty() ? ' ' : mid[0];
+        p.txt = mid.empty() ? ' ' : mid[0]; //Checks if mid is empty, then sets it to a space if so and the first character if not
         
-        points.push_back(p);
+        points.push_back(p); //Adding to the list
     }    
 
     cout << "Fetched" << endl;
