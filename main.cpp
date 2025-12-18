@@ -15,7 +15,7 @@ int main(){
     ifstream file("data.txt");
     if(!file){ //Check if the file actually opens first
         cout << "File couldn't open" << endl;
-        return 1;
+        return -1;
     }
 
     vector<point> points; //Initializing all our variables and lists
@@ -84,5 +84,5 @@ int main(){
         }
         cout << endl;
     }
-
+    return 0;
 }
